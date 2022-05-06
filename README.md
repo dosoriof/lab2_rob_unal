@@ -1,1 +1,12 @@
-# lab2_rob_unal
+# Laboratory 2 - Phantom X - ROS
+
+## Forward Kinematics
+
+### Model
+### DH Parameters
+
+## ROS
+
+## Matlab
+
+## Conclusions
