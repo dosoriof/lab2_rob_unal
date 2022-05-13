@@ -102,4 +102,64 @@ call(motorSvcClient,motorCommandMsg); %Service call
 
 ## Matlab + ROS + Toolbox
 
+To make the relationship between ROS, Matlab and the toolbox, we are going to make use of information that we have already done previously. Basically it is to make the connection between two of the previous sections of the laboratory: the generation and graphing of the motor model in matlab with the toolbox and the publication of commands in the robot joints also from matlab.
+
+### Robot plot
+
+We define again each of the links with the DH parameters and we create the Robot with every links
+``` matlab
+l = [14.5, 10.7, 10.7, 9]; % Links lenght
+% Robot Definition RTB
+L(1) = Link('revolute','alpha',pi/2,'a',0,   'd',l(1),'offset',0,   'qlim',[-3*pi/4 3*pi/4]);
+L(2) = Link('revolute','alpha',0,   'a',l(2),'d',0,   'offset',pi/2,'qlim',[-3*pi/4 3*pi/4]);
+L(3) = Link('revolute','alpha',0,   'a',l(3),'d',0,   'offset',0,   'qlim',[-3*pi/4 3*pi/4]);
+L(4) = Link('revolute','alpha',0,   'a',0,   'd',0,   'offset',0,   'qlim',[-3*pi/4 3*pi/4]);
+PhantomX = SerialLink(L,'name','Px');
+PhantomX.tool = [0 0 1 l(4); -1 0 0 0; 0 -1 0 0; 0 0 0 1];
+```
+Then we decided to create an array ***q*** with all the positions of the links that we are going to visualize (5 positions proposed on the lab guide). Our ***pose*** variable determines which of these positions from the ***q*** array we are going to use. And finally we plot the Robot model with the position:
+``` matlab
+% Plotting
+q = [ 0,  0,   0,   0,   0; 
+    -20, 20, -20,  20,   0;
+     30,-30,  30, -30,   0;
+    -90, 15, -55,  17,   0;
+    -90, 45, -55,  45, 100];
+q_rad = deg2rad(q);
+pose = 1;
+PhantomX.plot(q_rad(pose,1:4),'notiles','noname');
+hold on
+ws = [-50 50];
+trplot(eye(4),'rgb','arrow','length',15,'frame','0')
+axis([repmat(ws,1,2) 0 60])
+```
+
+### ROS connection
+When we have already created our plot we settle this selected position on the real Robot. For this pourpose we have to use the ROS services from the px_robot package as we did on the Matlab Connection section:
+``` matlab
+%% ROS Connection 
+rosinit
+%%
+motorSvcClient = rossvcclient('dynamixel_workbench/dynamixel_command');%creacion del cliente
+motorCommandMsg = rosmessage(motorSvcClient);%creacion del mensaje
+```
+Once we have created the service client, we just have to call the service for each one of the motors. As we want to change the position of the links we have to set the AddrName in "Goal_Position". We use a for structure in order to go through each Id motor and change the value. We can se that the Value must be a number in bits between 0 and 1023 and we have defined this values in previous steps in degrees units, that's why we need to make a mapping convertion between the value in degrees and the values in bits. For this we also need the information of the minimum and maximum value of each articulation. These values are -150° and 150° respectively. We do this convertion thanks to the function ***mapfun***. This function is not from matlab so we need the file ***mapfun.m*** (placed in the matlab folder) to be able to use it. 
+
+``` matlab
+%% ROS Connection 
+rosinit
+%%
+motorSvcClient = rossvcclient('dynamixel_workbench/dynamixel_command');%creacion del cliente
+motorCommandMsg = rosmessage(motorSvcClient);%creacion del mensaje
+%%
+motorCommandMsg.AddrName = "Goal_Position";
+for i=1:length(q)
+    motorCommandMsg.Id = i+5;
+    motorCommandMsg.Value = round(mapfun(q(pose,i),-150,150,0,1023));
+    call(motorSvcClient,motorCommandMsg);
+end
+```
+
+We can see this matlab code in the Model_and_jointSvc.m from the folder with name matlab
+
 ## Conclusions
