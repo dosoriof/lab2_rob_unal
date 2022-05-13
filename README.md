@@ -271,3 +271,7 @@ end
 We can see this matlab code in the ***Model_and_jointSvc.m*** from the folder with name matlab
 
 ## Conclusions
+-	Matlab is a program that contains an immense variety of functionalities and tools to execute tasks of engineering, calculus and design, non the less its high demand in computing capabilities, and the price of the licenses make it difficult to implement in the industry.
+-	ROS has two main languages C++ and python, C++ being preferred due to better performance. But Python has less complexity in code and no need for explicit building.
+-	The use of ROS to control robots allow us to implement complex processes without deep knowledge of the technical operation of the equipment used, taking advantage of the programs the manufacturers or the community share openly, this allows to small teams to build and operate complex robotic systems in a short time.
+-	The robotic arm Dynamixel Phantom allow students to physically experience with complex systems without the risks of industrial machinery, but with the complexity necessary to build confidence to explore and learn about the industrial robotic machinery
