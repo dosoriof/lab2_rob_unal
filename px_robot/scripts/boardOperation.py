@@ -5,6 +5,14 @@ import termios, sys, os
 from dynamixel_workbench_msgs.srv import DynamixelCommand
 TERMIOS = termios
 
+## This function creates de service to control de dynamixel motors
+## First we wait for the service to be available in case it its
+## been used by another process.
+## Next we initialize the service inside a try, in case it fails
+## the whole process don’t fail.
+## Then we send the command with the parameters we called the function, 
+## and wait a time for the command to be executed, 
+## then we return the result of the command. 
 def jointCommand(command, id_num, addr_name, value, time):
     rospy.wait_for_service('dynamixel_workbench/dynamixel_command')
     try:        
@@ -16,7 +24,8 @@ def jointCommand(command, id_num, addr_name, value, time):
     except rospy.ServiceException as exc:
         print(str(exc))
 
-## Función para escuchar el teclado y devolver la tecla que se presiona.
+## This function reads the key is pressed and returns, to use this function 
+## it is necessary the command window in which was called the script is in focus.
 def getkey():
     fd = sys.stdin.fileno()
     old = termios.tcgetattr(fd)
@@ -32,6 +41,8 @@ def getkey():
         termios.tcsetattr(fd, TERMIOS.TCSAFLUSH, old)
     return c
 
+## This function prints the number and name of the joint is 
+## currently on focus and being controlled.
 def printJoint(numJoint):
     if numJoint == 6:
         print("6-waist")
@@ -44,6 +55,13 @@ def printJoint(numJoint):
     elif numJoint == 10:
         print("10-griper")
 
+## In the main function first we define in an array the number of joints and its 
+## home an objective position, then we define the ID of the first motor, we 
+## assume they are consecutive from there, then inside a try we configure the
+## torque for each one of the motors, then inside an infinite loop we wait for
+## a key to be pressed, if it is ‘w’ or ‘s’ they change the motor in focus, if it is
+## ‘a’ or ‘d’ they change the position of the motor to its home or objective 
+##position. 
 if __name__ == '__main__':
     joints = [[1, 400, 512], [2, 400, 512], [3, 400, 512], [4, 400, 512],[5, 0, 512]]
     numJoint = 6
