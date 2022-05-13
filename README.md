@@ -50,6 +50,24 @@ L(4) = Link('revolute','alpha',0,   'a',0,   'd',0,   'offset',0,   'qlim',[-3*p
 PhantomX = SerialLink(L,'name','Px');
 ```
 
+Now, we have to orientate the TCP in the correct way:
+
+``` matlab
+% Tool orientation
+PhantomX.tool = [0 0 1 l(4); -1 0 0 0; 0 -1 0 0; 0 0 0 1];
+```
+With the model defined, we can start to play with it. We can use the ***.teach*** function to plot the robot and move their Links with sliders.
+``` matlab
+PhantomX.teach()
+```
+Now we are going to plot some positions of the Robot with the ***.plot*** function, which arguments are the Links' values q:
+- Home position q = [0 0 0 0]
+[![Captura-de-pantalla-de-2022-05-13-11-33-52.png](https://i.postimg.cc/ZnnXf1kg/Captura-de-pantalla-de-2022-05-13-11-33-52.png)](https://postimg.cc/dZMW3NVm)
+- q = [30° 45° -30° 70°]
+- q = [90° -20° -70° 15°]
+
+
+
 ## Matlab conection
 
 ## Conclusions
