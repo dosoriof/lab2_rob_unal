@@ -36,6 +36,8 @@ This script is located in the scripts folder of the px_robot package in this rep
 - Pressing the 'D' key brings the operated joint to the target position.
 - Pressing the 'A' key should bring the operated joint to the home position.
 
+### Code explanation
+### Video
 
 ## Toolbox
 We used the Peter Corke Toolbox in order to define and visualize a plot of de robot's model. First we define each of the Links with the function ***Link***, their inputs are the DH parameters that we defined in a previous section. With these Links created, then we create the robot by using the ***Serial Link*** function:
@@ -71,9 +73,8 @@ Now we are going to plot some positions of the Robot with the ***.plot*** functi
 - q = [90° -20° -70° 15°]  <br>
 [![Captura-de-pantalla-de-2022-05-13-11-37-55.png](https://i.postimg.cc/76k2nkzH/Captura-de-pantalla-de-2022-05-13-11-37-55.png)](https://postimg.cc/GBXtb6zV)
 
-
-
-
 ## Matlab conection
+
+## Matlab + ROS + Toolbox
 
 ## Conclusions
