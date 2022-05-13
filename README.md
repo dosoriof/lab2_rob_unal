@@ -83,9 +83,9 @@ Now we are going to plot some positions of the Robot with the ***.plot*** functi
 - q = [90° -20° -70° 15°]  <br>
 [![Captura-de-pantalla-de-2022-05-13-11-37-55.png](https://i.postimg.cc/76k2nkzH/Captura-de-pantalla-de-2022-05-13-11-37-55.png)](https://postimg.cc/GBXtb6zV)
 
-## Matlab conection
+## Matlab connection
 
-With Matlab we can create a script that moves each of the joints of the Phantom X. First we have to start the conection between Matlab an ROS with ***rosinit*** to be able to use the Services of the dynamixel motors of the robot. Then we create a client for the service ****dynamixel_workbench/dynamixel_command**** and the message for the service. And Finally we can call the service with the parameters that we want:
+With Matlab we can create a script that moves each of the joints of the Phantom X. First we have to start the conection between Matlab an ROS with ***rosinit*** to be able to use the Services of the dynamixel motors of the robot. Then we create a client for the service ****dynamixel_workbench/dynamixel_command**** and the respective message for the service. Finally we can call the service with the parameters that we want:
 ``` matlab
 %%
 rosinit
