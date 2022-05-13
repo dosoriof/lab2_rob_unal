@@ -56,15 +56,21 @@ Now, we have to orientate the TCP in the correct way:
 % Tool orientation
 PhantomX.tool = [0 0 1 l(4); -1 0 0 0; 0 -1 0 0; 0 0 0 1];
 ```
+Thus, the HTM of the system from the base to the tool is: 
+
+
 With the model defined, we can start to play with it. We can use the ***.teach*** function to plot the robot and move their Links with sliders.
 ``` matlab
 PhantomX.teach()
 ```
 Now we are going to plot some positions of the Robot with the ***.plot*** function, which arguments are the Links' values q:
-- Home position q = [0 0 0 0]
+- Home position q = [0 0 0 0] <br>
 [![Captura-de-pantalla-de-2022-05-13-11-33-52.png](https://i.postimg.cc/ZnnXf1kg/Captura-de-pantalla-de-2022-05-13-11-33-52.png)](https://postimg.cc/dZMW3NVm)
-- q = [30° 45° -30° 70°]
-- q = [90° -20° -70° 15°]
+- q = [30° 45° -30° 70°]  <br>
+[![Captura-de-pantalla-de-2022-05-13-11-36-38.png](https://i.postimg.cc/9QL8kLbH/Captura-de-pantalla-de-2022-05-13-11-36-38.png)](https://postimg.cc/rDtN0C7f)
+- q = [90° -20° -70° 15°]  <br>
+[![Captura-de-pantalla-de-2022-05-13-11-37-55.png](https://i.postimg.cc/76k2nkzH/Captura-de-pantalla-de-2022-05-13-11-37-55.png)](https://postimg.cc/GBXtb6zV)
+
 
 
 
