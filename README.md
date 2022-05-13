@@ -156,6 +156,8 @@ if __name__ == '__main__':
         pass
 ```
 ### Video
+The video was uploaded to Youtube and can be found in the next link:
+[Movement of Phantom X joints between two positions](https://youtu.be/AkXbdgU3pi4)
 
 ## Toolbox
 We used the Peter Corke Toolbox in order to define and visualize a plot of de robot's model. First we define each of the Links with the function ***Link***, their inputs are the DH parameters that we defined in a previous section. With these Links created, then we create the robot by using the ***Serial Link*** function:
