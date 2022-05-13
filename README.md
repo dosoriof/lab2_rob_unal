@@ -36,6 +36,16 @@ This script is located in the scripts folder of the px_robot package in this rep
 - Pressing the 'D' key brings the operated joint to the target position.
 - Pressing the 'A' key should bring the operated joint to the home position.
 
+For the script to work first we have to run any of the next ROS launch files:
+- px_controllers.launch - allows to move the robot
+- px_rviz_dyna.launch - allows to move the robot but also creates a virtual visualization on rviz
+Then we can run and use the script:
+``` 
+roslaunch px_robot px_rviz_dyna.launch
+cd catkin_ws/src/px_robot/scripts
+python boardOperation.py
+```
+
 ### Code explanation
 ### Video
 
@@ -74,6 +84,21 @@ Now we are going to plot some positions of the Robot with the ***.plot*** functi
 [![Captura-de-pantalla-de-2022-05-13-11-37-55.png](https://i.postimg.cc/76k2nkzH/Captura-de-pantalla-de-2022-05-13-11-37-55.png)](https://postimg.cc/GBXtb6zV)
 
 ## Matlab conection
+
+With Matlab we can create a script that moves each of the joints of the Phantom X. First we have to start the conection between Matlab an ROS with ***rosinit*** to be able to use the Services of the dynamixel motors of the robot. Then we create a client for the service ****dynamixel_workbench/dynamixel_command**** and the message for the service. And Finally we can call the service with the parameters that we want:
+``` matlab
+%%
+rosinit
+%%
+motorSvcClient = rossvcclient('dynamixel_workbench/dynamixel_command');%Client creation
+motorCommandMsg = rosmessage(motorSvcClient);%Message creation
+%%
+motorCommandMsg.AddrName = "Goal_Position";
+motorCommandMsg.Id = 1;
+motorCommandMsg.Value = 400;
+call(motorSvcClient,motorCommandMsg); %Service call
+```
+
 
 ## Matlab + ROS + Toolbox
 
