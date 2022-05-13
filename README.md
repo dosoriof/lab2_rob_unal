@@ -26,6 +26,8 @@ We've created a python script which moves each of the joints between two positio
 - Wrist
   - Home: 0° (512 bits)
   - Objective: 32,6° (400 bits)
+
+
 This script is located in the scripts folder of the px_robot package in this repository with the name *_boardOperation.py_*. When running the script the Phantom X can be operated in the next way:
 - You can tell the program which joint you want to move. In the console, the name of the operating joint is printed.
   - With the 'W' key you go to the next joint (if you are in Waist you go to Shoulder ; if you are in shoulder you go to elbow and so on).
