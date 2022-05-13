@@ -1,5 +1,8 @@
 # Laboratory 2 - Phantom X - ROS
 
+Ricardo Galindo
+Diego Osorio
+
 ## Forward Kinematics
 
 ### Model and measurements
