@@ -178,8 +178,6 @@ Now, we have to orientate the TCP in the correct way:
 % Tool orientation
 PhantomX.tool = [0 0 1 l(4); -1 0 0 0; 0 -1 0 0; 0 0 0 1];
 ```
-Thus, the HTM of the system from the base to the tool is: 
-
 
 With the model defined, we can start to play with it. We can use the ***.teach*** function to plot the robot and move their Links with sliders.
 ``` matlab
