@@ -40,7 +40,7 @@ This script is located in the scripts folder of the px_robot package in this rep
 ## Toolbox
 We used the Peter Corke Toolbox in order to define and visualize a plot of de robot's model. First we define each of the Links with the function ***Link***, their inputs are the DH parameters that we defined in a previous section. With these Links created, then we create the robot by using the ***Serial Link*** function:
 
-```
+``` matlab
 l = [14.5, 10.7, 10.7, 9]; % Links lenght
 % Robot Definition RTB
 L(1) = Link('revolute','alpha',pi/2,'a',0,   'd',l(1),'offset',0,   'qlim',[-3*pi/4 3*pi/4]);
